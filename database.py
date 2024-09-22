@@ -46,15 +46,10 @@ def save_game_state(game_id, board, current_player, move_number):
 # Update the game result when the game is over
 def save_game_result(game_id, winner):
     cursor.execute(
-        """UPDATE game_result SET winner = ? WHERE game_id = ?""", (winner, game_id)
+        """UPDATE game_result SET winner = ? WHERE game_id = ?""",
+        (winner if winner is not None else "QUIT", game_id),
     )
     conn.commit()
-
-
-# Retrieve the full game history (optional)
-def retrieve_game_history(game_id):
-    cursor.execute("""SELECT * FROM game_state WHERE game_id = ?""", (game_id,))
-    return cursor.fetchall()
 
 
 # Close the database connection
