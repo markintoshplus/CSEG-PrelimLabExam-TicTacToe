@@ -4,15 +4,15 @@
 
 ## Overview
 
-This is a command-line Tic-Tac-Toe game where a human player competes against an AI player that uses the Minimax algorithm. The game also integrates a SQLite database to store game states and results. Players can play multiple rounds, and the game states and results for each round are saved and linked in the database.
+This is a graphical Tic-Tac-Toe game where a human player competes against an AI player using the Minimax algorithm. The game integrates a SQLite database to store game states and results. Players can play multiple rounds, with each round's states and results saved and linked in the database.
 
 ## Features
 
-- **Two-player game**: A human player ("X") versus an AI player ("O").
-- **AI decision-making**: The AI player uses the Minimax algorithm to determine optimal moves.
+- **Single-player game**: A human player ("X") versus an AI player ("O").
+- **AI decision-making**: The AI uses the Minimax algorithm to determine optimal moves.
 - **Persistent storage**: Game states and results are stored in a SQLite database.
-- **Play multiple rounds**: After each game, players are asked if they want to play again.
-- **Game history**: Every game and its moves are saved to the database for future reference.
+- **Play multiple rounds**: After each game, players can choose to play again.
+- **Game history**: All games and their moves are saved in the database for future reference.
 
 ## How It Works
 
@@ -27,12 +27,13 @@ This is a command-line Tic-Tac-Toe game where a human player competes against an
 - [How to Play](#how-to-play)
 - [Database Schema](#database-schema)
 - [How It Works](#how-it-works)
+- [Example Game Play](#example-game-play)
 - [License](#license)
 
 ## Requirements
 
 - Python 3.6+
-- SQLite (no additional installation needed, as it's included with Python's `sqlite3` module)
+- SQLite (included with Python's `sqlite3` module)
 
 ## Installation
 
@@ -56,20 +57,11 @@ This is a command-line Tic-Tac-Toe game where a human player competes against an
 
 ## How to Play
 
-1. The game is played in the terminal.
+1. The game opens in a GUI window.
 2. The human player is assigned "X" and the AI player is assigned "O".
-3. Players take turns by entering a number (1-9) corresponding to the board position:
-
-    ```
-     1 | 2 | 3
-    -----------
-     4 | 5 | 6
-    -----------
-     7 | 8 | 9
-    ```
-
+3. Players take turns by clicking on the board positions.
 4. The game continues until either player wins or a tie occurs.
-5. At the end of each game, you will be prompted to play again. Enter `y` to play another round or `n` to exit.
+5. After each game, you will be prompted to play again. Choose "Yes" to play another round or "No" to exit.
 
 ## Database Schema
 
@@ -103,32 +95,9 @@ The game data is stored in a SQLite database (`tic_tac_toe.db`) with two tables:
 
 ## How It Works
 
-- **Minimax Algorithm**: The AI player uses Minimax, which recursively evaluates all possible game states to select the best move. It minimizes the possible loss by considering the opponent's best moves as well.
-- **Persistent Storage**: Each move is recorded in the database, and the final result of the game is stored once the game is complete. You can query the database to review past games.
-- **Playing Multiple Rounds**: After each round, the player is given the option to play again. If they choose yes, a new game starts, and its game states and results are stored separately in the database.
-
-## Example Game Play
-
-```
-Player X, enter your move (1-9): 1
-
- X |   |  
------------
-   |   |  
------------
-   |   |  
-
-AI chose position 5
-
- X |   |  
------------
-   | O |  
------------
-   |   |  
-
-Player X, enter your move (1-9): 2
-...
-```
+- **Minimax Algorithm**: The AI player uses Minimax, which recursively evaluates all possible game states to select the best move while minimizing potential losses by considering the opponent's moves.
+- **Persistent Storage**: Each move is recorded in the database, and the final result of the game is stored once completed. Past games can be queried from the database.
+- **Playing Multiple Rounds**: After each round, players can opt to play again. If yes, a new game starts, with its states and results stored separately in the database.
 
 ## License
 
