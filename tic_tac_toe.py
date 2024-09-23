@@ -70,6 +70,7 @@ def minimax(board, player):
     return best_move
 
 
+#GUI Code
 class TicTacToe(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -197,6 +198,18 @@ class MainMenu(QMainWindow):
         play_button.setStyleSheet("font-size: 18px; padding: 10px;")
         play_button.clicked.connect(self.start_game)
         layout.addWidget(play_button, alignment=Qt.AlignCenter)  # Center the button
+
+        # Spacer
+        layout.addSpacerItem(
+            QSpacerItem(20, 20, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        )
+
+        # History Button
+        history_button = QPushButton("History")
+        history_button.setFixedSize(150, 40)  # Set fixed size for the button
+        history_button.setStyleSheet("font-size: 18px; padding: 10px;")
+        history_button.clicked.connect(self.start_game)
+        layout.addWidget(history_button, alignment=Qt.AlignCenter)  # Center the button
 
         # Spacer
         layout.addSpacerItem(
