@@ -70,7 +70,7 @@ def minimax(board, player):
     return best_move
 
 
-#GUI Code
+# Tic Tac Toe Interface
 class TicTacToe(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -167,7 +167,7 @@ class TicTacToe(QMainWindow):
         for button in self.buttons.values():
             button.setText(" ")
 
-
+# Main Menu interface
 class MainMenu(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -208,7 +208,7 @@ class MainMenu(QMainWindow):
         history_button = QPushButton("History")
         history_button.setFixedSize(150, 40)  # Set fixed size for the button
         history_button.setStyleSheet("font-size: 18px; padding: 10px;")
-        history_button.clicked.connect(self.start_game)
+        history_button.clicked.connect(self.open_History)
         layout.addWidget(history_button, alignment=Qt.AlignCenter)  # Center the button
 
         # Spacer
@@ -240,6 +240,61 @@ class MainMenu(QMainWindow):
     def closeEvent(self, event):
         close_connection()  # Ensure the connection is closed on exit
         event.accept()
+
+    def open_History(self,):
+        self.hide()  # Hide the main menu
+        self.history_window = HistoryWindow()
+        self.history_window.show()
+
+class HistoryWindow(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("Game History")
+        self.setGeometry(100, 100, 400, 300)
+        self.init_ui()
+
+    def init_ui(self):
+        layout = QVBoxLayout()
+        self.central_widget = QWidget()
+        self.setCentralWidget(self.central_widget)
+        self.central_widget.setLayout(layout)
+
+        # Title Label
+        title_label = QLabel("Recent Matches")
+        title_label.setStyleSheet("font-size: 20px; font-weight: bold;")
+        title_label.setAlignment(Qt.AlignCenter)
+        layout.addWidget(title_label)
+
+        # Spacer
+        layout.addSpacerItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
+
+        # Recent Matches List
+        self.matches_label = QLabel()
+        layout.addWidget(self.matches_label)
+
+        # Back Button
+        back_button = QPushButton("Back")
+        back_button.clicked.connect(self.back_to_menu)
+        layout.addWidget(back_button)
+
+        # Fetch and display recent matches
+        self.display_recent_matches()
+
+    def display_recent_matches(self):
+        recent_matches = get_recent_matches()  # Assuming this function exists in the database module
+        match_text = ""
+        for game_id, winner, timestamp in recent_matches:
+            match_text += f"Game ID: {game_id}, Winner: {winner}, Time: {timestamp}\n"
+        
+        if not match_text:
+            match_text = "No matches found."
+        
+        self.matches_label.setText(match_text)
+
+    def back_to_menu(self):
+        self.hide()
+        self.main_menu = MainMenu()
+        self.main_menu.show()
 
 
 if __name__ == "__main__":
