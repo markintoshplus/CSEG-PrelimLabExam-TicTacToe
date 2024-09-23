@@ -1,0 +1,56 @@
+/* styles.qss */
+
+/* General Styles */
+QWidget {
+    background-color: #f0f0f0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Title Label */
+QLabel#titleLabel, QLabel#historyTitle {
+    font-size: 24px;
+    font-weight: bold;
+    color: #444;
+}
+
+/* Button Styles */
+QPushButton {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 4px 2px;
+    border-radius: 8px;
+}
+
+QPushButton:hover {
+    background-color: #0056b3;
+}
+
+/* Radio Button Styles */
+QRadioButton {
+    font-size: 16px;
+    color: #333;
+}
+
+/* Scroll Area Styles */
+QScrollArea {
+    border: none;
+}
+
+/* Grid Layout Styles */
+QGridLayout {
+    margin: 20px;
+}
+
+/* History Window Styles */
+QLabel#historyTitle {
+    font-size: 20px;
+    font-weight: bold;
+    color: #444;
+}

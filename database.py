@@ -58,7 +58,13 @@ def close_connection():
 
 
 # Fetch most recent matches from db
-def get_recent_matches(limit=5):
-    query = "SELECT game_id, winner, date FROM game_result ORDER BY date DESC LIMIT ?"
-    cursor.execute(query, (limit,))
-    return cursor.fetchall()  # Fetch the result
+def get_recent_matches():
+    query = "SELECT game_id, winner, date FROM game_result ORDER BY date DESC"
+    cursor.execute(query)
+    return cursor.fetchall()  # Fetch all results
+
+# Fetch match details for a specific game
+def get_match_details(game_id):
+    query = "SELECT move_number, board_state, current_player FROM game_state WHERE game_id = ? ORDER BY move_number"
+    cursor.execute(query, (game_id,))
+    return cursor.fetchall()  # Fetch all results for the specific game
