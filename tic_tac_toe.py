@@ -158,7 +158,9 @@ class TicTacToe(QMainWindow):
         if reply == QMessageBox.Yes:
             self.reset_game()
         else:
-            self.close()  # Close the game window without saving NULL
+            self.main_menu = MainMenu()  # Create an instance of MainMenu
+            self.main_menu.show()  # Show the main menu
+            self.close()  # Close the current game window
 
     def reset_game(self):
         self.board = create_board()
