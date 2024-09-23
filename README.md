@@ -27,7 +27,6 @@ This is a graphical Tic-Tac-Toe game where a human player competes against an AI
 - [How to Play](#how-to-play)
 - [Database Schema](#database-schema)
 - [How It Works](#how-it-works)
-- [Example Game Play](#example-game-play)
 - [License](#license)
 
 ## Requirements
