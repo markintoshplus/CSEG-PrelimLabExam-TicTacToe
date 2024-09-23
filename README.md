@@ -31,6 +31,7 @@ This is a graphical Tic-Tac-Toe game where a human player competes against an AI
 - [Database Schema](#database-schema)
 - [How It Works](#how-it-works)
 - [License](#license)
+- [Group Members](#group-members)
 
 ## Requirements
 
@@ -112,5 +113,17 @@ The game data is stored in a SQLite database (`tic_tac_toe.db`) with two tables:
 ## License
 
 This project is licensed under the MIT License. Feel free to use and modify the code for your own purposes.
+
+## Group Members
+
+1. Asan, Jayvee
+2. Autos, Eugene Lawrence 
+3. Banagan, Mark Christian
+4. De Vera, Mark Cedrick
+5. Dimaunahan, John Jomar
+6. Emnacin, Hans Neil
+7. Malsi, Ezra Micah
+8. Meneses, James Paulo
+9. Tiongson, Kyle
 
 ---
