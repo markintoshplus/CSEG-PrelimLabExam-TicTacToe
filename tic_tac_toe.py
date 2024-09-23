@@ -171,6 +171,17 @@ class TicTacToe(QMainWindow):
         for button in self.buttons.values():
             button.setText(" ")
 
+    def closeEvent(self, event):
+        if not self.game_finished:
+            QMessageBox.warning(
+                self,
+                "Warning",
+                "You cannot exit the game until the match is finished."
+            )
+            event.ignore()  # Ignore the close event
+        else:
+            event.accept()  # Accept the close event if the game is finished
+
 # Main Menu interface
 class MainMenu(QMainWindow):
     def __init__(self):
