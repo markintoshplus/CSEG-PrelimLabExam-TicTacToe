@@ -13,12 +13,15 @@ This is a graphical Tic-Tac-Toe game where a human player competes against an AI
 - **Persistent storage**: Game states and results are stored in a SQLite database.
 - **Play multiple rounds**: After each game, players can choose to play again.
 - **Game history**: All games and their moves are saved in the database for future reference.
+- **Difficulty levels**: Choose between Easy, Medium, and Hard difficulty levels for the AI.
+- **Game history and details**: View recent matches and detailed move-by-move history of each game.
 
 ## How It Works
 
 - **Game State**: The current state of the game board, player moves, and move numbers are stored in the `game_state` table.
 - **Game Result**: The result of each game (win, tie, or in-progress) is stored in the `game_result` table.
 - **AI Player**: The AI uses the Minimax algorithm to calculate the best possible move at every turn.
+- **Difficulty Levels**: The AI's decision-making process varies based on the selected difficulty level (Easy, Medium, Hard).
 
 ## Table of Contents
 
@@ -48,7 +51,13 @@ This is a graphical Tic-Tac-Toe game where a human player competes against an AI
     cd CSEG5-LabExam-TicTacToe
     ```
 
-3. Run the game:
+3. Install the required dependencies:
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+4. Run the game:
 
     ```bash
     python tic_tac_toe.py
@@ -61,6 +70,7 @@ This is a graphical Tic-Tac-Toe game where a human player competes against an AI
 3. Players take turns by clicking on the board positions.
 4. The game continues until either player wins or a tie occurs.
 5. After each game, you will be prompted to play again. Choose "Yes" to play another round or "No" to exit.
+6. You can view the history of recent matches and detailed move-by-move history of each game.
 
 ## Database Schema
 
@@ -97,6 +107,7 @@ The game data is stored in a SQLite database (`tic_tac_toe.db`) with two tables:
 - **Minimax Algorithm**: The AI player uses Minimax, which recursively evaluates all possible game states to select the best move while minimizing potential losses by considering the opponent's moves.
 - **Persistent Storage**: Each move is recorded in the database, and the final result of the game is stored once completed. Past games can be queried from the database.
 - **Playing Multiple Rounds**: After each round, players can opt to play again. If yes, a new game starts, with its states and results stored separately in the database.
+- **Difficulty Levels**: The AI's decision-making process varies based on the selected difficulty level (Easy, Medium, Hard).
 
 ## License
 
