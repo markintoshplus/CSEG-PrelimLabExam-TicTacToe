@@ -78,6 +78,7 @@ class TicTacToe(QMainWindow):
         super().__init__()
         self.setWindowTitle("Tic Tac Toe")
         self.setGeometry(100, 100, 300, 300)
+        self.setFixedSize(400, 300)
 
         self.current_player = "X"  # Human player starts as X
         self.board = create_board()
@@ -188,6 +189,8 @@ class MainMenu(QMainWindow):
         super().__init__()
         self.setWindowTitle("Tic Tac Toe - Main Menu")
         self.setGeometry(100, 100, 400, 300)
+        self.setFixedSize(400, 300)
+
         self.init_ui()
 
     def init_ui(self):
@@ -266,6 +269,7 @@ class HistoryWindow(QMainWindow):
         super().__init__()
         self.setWindowTitle("Game History")
         self.setGeometry(100, 100, 500, 300)
+        self.setFixedSize(500, 300)
         self.init_ui()
 
     def init_ui(self):
