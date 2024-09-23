@@ -10,8 +10,10 @@ from PyQt5.QtWidgets import (
     QSpacerItem,
     QSizePolicy,
     QMessageBox,
+    QTableWidget,
+    QTableWidgetItem
 )
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import (Qt, QDateTime)
 from database import *
 
 
@@ -250,7 +252,7 @@ class HistoryWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Game History")
-        self.setGeometry(100, 100, 400, 300)
+        self.setGeometry(100, 100, 500, 300)
         self.init_ui()
 
     def init_ui(self):
@@ -266,11 +268,13 @@ class HistoryWindow(QMainWindow):
         layout.addWidget(title_label)
 
         # Spacer
-        layout.addSpacerItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
+        layout.addSpacerItem(QSpacerItem(20, 20, QSizePolicy.Minimum, QSizePolicy.Expanding))
 
-        # Recent Matches List
-        self.matches_label = QLabel()
-        layout.addWidget(self.matches_label)
+        # Table for Recent Matches
+        self.table_widget = QTableWidget()
+        self.table_widget.setColumnCount(3)  # 3 columns: Game ID, Winner, Timestamp
+        self.table_widget.setHorizontalHeaderLabels(["Game ID", "Winner", "Date/Time"])
+        layout.addWidget(self.table_widget)
 
         # Back Button
         back_button = QPushButton("Back")
@@ -281,15 +285,23 @@ class HistoryWindow(QMainWindow):
         self.display_recent_matches()
 
     def display_recent_matches(self):
-        recent_matches = get_recent_matches()  # Assuming this function exists in the database module
-        match_text = ""
-        for game_id, winner, timestamp in recent_matches:
-            match_text += f"Game ID: {game_id}, Winner: {winner}, Time: {timestamp}\n"
-        
-        if not match_text:
-            match_text = "No matches found."
-        
-        self.matches_label.setText(match_text)
+        recent_matches = get_recent_matches()  # Fetch recent matches from the database
+
+        if not recent_matches:
+            QMessageBox.information(self, "No Matches", "No matches found.")
+            return
+
+        # Set row count according to the number of results
+        self.table_widget.setRowCount(len(recent_matches))
+
+        # Populate the table with match data
+        for row, (game_id, winner, timestamp) in enumerate(recent_matches):
+            self.table_widget.setItem(row, 0, QTableWidgetItem(str(game_id)))
+            self.table_widget.setItem(row, 1, QTableWidgetItem(winner))
+
+            # Format the timestamp
+            formatted_time = QDateTime.fromString(timestamp, "yyyy-MM-dd HH:mm:ss").toString("yyyy-MM-dd HH:mm")
+            self.table_widget.setItem(row, 2, QTableWidgetItem(formatted_time))
 
     def back_to_menu(self):
         self.hide()
